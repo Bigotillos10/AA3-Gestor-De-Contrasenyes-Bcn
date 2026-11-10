@@ -1,164 +1,199 @@
-# Activitat: Gestió de Contrasenyes 
 
+# Activitat: Gestió de contrasenyes
 
-## Fase 1: Anàlisi i Justificació
+# Fase 1: Anàlisi i justificació
 
+## 1. Introducció
 
-### 1. Introducció i Justificació
-L'ús de contrasenyes febles o repetides és un dels punts més vulnerables a qualsevol empresa:
-**Atacs de diccionari:** Software automatitzat que prova milers de paraules per segon. Si la clau és simple, la treuen al moment.
-**Credential stuffing:** Si filtren la clau d'un servei extern i l'empleat la reutilitza a l'empresa, els atacants entren directament als nostres sistemes (correu, VPN, etc.).
-**Falta de control:** Tenir claus apuntades en notes, fulls de càlcul o arxius de text fa que qualsevol les pugui veure i es perdi la traçabilitat.
-**Per què fa falta un gestor?**
-1. Permet crear claus complexes, llargues i úniques per a cada servei sense haver-les de recordar.
-2. Centralitza i xifra tota la informació sota una sola contrasenya mestra.
-3. Evita el phishing, ja que les extensions de navegador només omplen les dades si el domini de la web coincideix exactament.
+Les contrasenyes són una part important de la seguretat d'una empresa. Si són massa senzilles o es repeteixen en diferents serveis, poden facilitar l'accés de persones no autoritzades.
 
+Alguns dels riscos més habituals són:
+
+- **Atacs de diccionari:** programes que proven moltes paraules i combinacions per descobrir contrasenyes.
+- **Credential stuffing:** utilitzar contrasenyes filtrades d'altres pàgines per intentar entrar en comptes de l'empresa.
+- **Mala gestió:** guardar contrasenyes en documents o notes sense protecció.
+
+**Per què utilitzar un gestor de contrasenyes?**
+
+1. Permet crear contrasenyes llargues i diferents.
+2. Guarda totes les credencials en un espai xifrat.
+3. Facilita l'accés als comptes sense haver de recordar totes les contrasenyes.
+4. Ajuda a evitar el phishing comprovant els dominis de les pàgines web.
+
+## 2. Comparació entre Bitwarden i KeePassXC
+
+| Característica | Bitwarden | KeePassXC |
+|---|---|---|
+| Emmagatzematge | Núvol | Fitxer local `.kdbx` |
+| Xifratge | AES-256 i Zero-Knowledge | AES-256 / ChaCha20 |
+| Sincronització | Automàtica | Manual o amb eines externes |
+| Dispositius | PC, mòbil i navegador | Principalment ordinadors |
+| Preu | Gratuït amb plans de pagament | Gratuït |
+| Internet | Necessari per sincronitzar | No necessita Internet |
+
+## 3. Punts forts i febles
+
+### Bitwarden
+
+**Avantatges:**
+- Fàcil d'utilitzar.
+- Sincronitza les contrasenyes entre dispositius.
+- Permet compartir credencials amb altres membres de l'equip.
+
+**Inconvenients:**
+- Necessita Internet per sincronitzar els canvis.
+- Les dades s'emmagatzemen en servidors externs.
+
+### KeePassXC
+
+**Avantatges:**
+- Les dades es guarden localment.
+- No depèn d'Internet.
+- És completament gratuït.
+
+**Inconvenients:**
+- Cal fer còpies de seguretat manualment.
+- Compartir i sincronitzar les contrasenyes és més complicat.
+
+## 4. Elecció final
+
+La nostra recomanació és **Bitwarden**, perquè facilita la feina dels tècnics gràcies a la sincronització automàtica i a les opcions per compartir credencials.
+
+A més, utilitza xifratge de coneixement zero (Zero-Knowledge), que ajuda a protegir les dades dels usuaris.
 
 ---
 
+# Fase 2: Guia d'ús tècnica – Bitwarden
 
-### 2. Comparativa Tècnica: Bitwarden vs. KeePassXC
-
-
-| Criteri Tècnic | Bitwarden (Online / Núvol) | KeePassXC (Offline / Escriptori) |
-| :--- | :--- | :--- |
-| **Emmagatzematge** | Centralitzat al núvol (servidors propis o de Bitwarden). | Fitxer local xifrat (.kdbx) al disc o USB. |
-| **Xifratge i Seguretat** | Extrem a extrem (Zero-Knowledge) amb AES-256. | Local amb AES-256 / ChaCha20. Desxifrat només en RAM. |
-| **Sincronització** | Automàtica entre tots els dispositius. | Manual (movent el fitxer) o amb eines externes (Nextcloud/Syncthing). |
-| **Multi-dispositiu** | Molt bona (Windows, Linux, Mac, iOS, Android, navegadors). | Acceptable a PC/Linux/Mac; en mòbil calen eines de tercers. |
-| **Llicència i Cost** | Open Source (GPLv3). Model Freemium (plans per a equips). | Open Source (GPLv3). 100% gratuït sense opcions de pagament. |
-| **Dependència de Xarxa** | Cal connexió per sincronitzar (ofereix lectura offline). | 100% independent d'Internet (ideal per a entorns aïllats). |
-
+En aquesta part veurem com instal·lar i configurar Bitwarden, crear contrasenyes segures i guardar les credencials de diferents serveis.
 
 ---
 
+## 1. Instal·lació i creació del compte
 
-### 3. Avantatges i Inconvenients
+### 1.1 Descarregar Bitwarden
 
+**Pas 1.** Obrim el navegador de la màquina virtual amb Windows 11.
 
-#### Bitwarden (Online)
-**Pros:** Molt fàcil d'usar, sincronització automàtica i permet compartir carpetes de claus entre l'equip tècnic.
-**Contres:** Depèn de tenir Internet per sincronitzar nous canvis i les dades es guarden en servidors externs.
-#### KeePassXC (Offline)
-**Pros:** Control absolut de l'arxiu .kdbx, cap dada surt a Internet i és 100% de franc.
-**Contres:** Si el disc s'espatlla i no hi ha backup es perd tot, i la sincronització entre tècnics o amb el mòbil és manual.
----
+**Pas 2.** Entrem a la pàgina oficial:
 
+[https://bitwarden.com/download/](https://bitwarden.com/download/)
 
-### 4. Recomanació
-Es recomana **Bitwarden** per al personal tècnic. La sincronització automàtica entre diferents equips i la facilitat per compartir credencials corporatives de manera segura superen el model local, mantenint una seguretat excel·lent gràcies al xifratge de coneixement zero (Zero-Knowledge).
+**Pas 3.** Descarreguem la versió per a Windows i executem el fitxer d'instal·lació.
 
-
----
-# Fase 2: Guia d'Ús Tècnica (Manual Operatiu - Bitwarden)
-
-
-Aquest manual explica pas a pas com instal·lar, configurar i utilitzar **Bitwarden** com a gestor de contrasenyes corporatiu per a l'equip tècnic.
-
-
----
-
-
-## 1. Instal·lació i Configuració Inicial
-
-
-### 1.1 Descàrrega i instal·lació de l'aplicació d'escriptori
-1. Obre el navegador a la màquina virtual (Windows 11) i entra a la pàgina oficial: `https://bitwarden.com/download/`.
-2. Descarrega l'instal·lador per a **Windows**.
-3. Executa el fitxer descarregat (Bitwarden-Installer.exe) i segueix els passos de l'assistent d'instal·lació per defecte.
-
+**Pas 4.** Seguim els passos de l'assistent fins a acabar.
 
 ![1ra](/img/1ra%20captura.png)
 
+*Figura 1. Descàrrega i instal·lació de Bitwarden.*
 
-### 1.2 Creació del compte i Contrasenya Mestra
-1. Un cop instal·lat, obre l'aplicació de Bitwarden i fes clic a **Crear compte** (Create Account).
-2. Introdueix el teu correu electrònic corporatiu.
-3. Defineix la teva **Contrasenya Mestra** (Master Password). 
-   >  **Important:** Aquesta contrasenya és l'única clau que desxifra totes les altres. Ha de ser llarga (mínim 14-16 caràcters), combinant majúscules, minúscules, números i símbols. Si la perds, no es podrà recuperar el compte.
-4. (Opcional) Afegeix una pista per a la contrasenya i fes clic a **Crear compte**.
+### 1.2 Registrar-se i configurar la contrasenya mestra
 
+**Pas 1.** Obrim Bitwarden i seleccionem "Crear compte".
+
+**Pas 2.** Introduïm el correu electrònic corporatiu.
+
+**Pas 3.** Creem una contrasenya mestra llarga i segura, d'entre 14 i 16 caràcters com a mínim.
+
+**Pas 4.** Si volem, afegim una pista per recordar-la i acabem el registre.
+
+**Important:** La contrasenya mestra protegeix totes les altres. Si la perdem, recuperar el compte pot ser impossible.
 
 ![2nda](/img/2nda%20captura.png)
 
+*Figura 2. Creació del compte i contrasenya mestra.*
 
 ---
 
+## 2. Crear contrasenyes segures
 
-## 2. Generació de Contrasenyes Segures
+Bitwarden incorpora un generador que permet crear contrasenyes aleatòries.
 
+**Pas 1.** Entrem a l'opció "Generador" (Generator).
 
-Per evitar crear contrasenyes febles, utilitzarem el generador automàtic integrat a Bitwarden:
+**Pas 2.** Configurem les opcions recomanades:
 
+- Tipus: Contrasenya.
+- Longitud: Mínim 16 caràcters.
+- Majúscules i minúscules.
+- Números.
+- Símbols.
 
-1. Dins de l'aplicació o l'extensió, fes clic a la icona de **Generador** (Generator).
-2. Configura els paràmetres recomanats per a l'empresa:
-   * **Tipus:** Contrasenya (Password).
-   * **Longitud:** Mínim 16 caràcters.
-   * **Opcions actives:** Majúscules (A-Z), Minúscules (a-z), Números (0-9) i Símbols (!@#$%^&*).
-3. Fes clic a **Generar contrasenya** o a la icona de copiar per fer servir la clau aleatòria creada.
-
+**Pas 3.** Premem "Generar contrasenya" i copiem el resultat per utilitzar-lo.
 
 ![3ra](/img/3ra%20captura.png)
 
+*Figura 3. Generador de contrasenyes de Bitwarden.*
 
 ---
 
+## 3. Guardar les credencials
 
-## 3. Exemples d'Ús i Emplenament Automàtic
+### 3.1 Afegir un compte de correu
 
+**Pas 1.** Entrem a "El meu repositori" (Vault) i premem el botó "+" per afegir un element.
 
-### 3.1 Desar una credencial de correu electrònic
-1. Vegues a l'apartat **El meu repositori** (Vault) i fes clic al botó **+ (Afegir element)**.
-2. Emplena els camps bàsics:
-   * **Nom:** Correu Corporatiu / Gmail Enterprise.
-   * **Nom d'usuari:** usuari@empresa.com.
-   * **Contrasenya:** Utilitza el generador integrat per posar una clau segura.
-   * **URI / Web:** https://mail.google.com (o la URL del webmail).
-3. Fes clic a **Desar** (Save).
+**Pas 2.** Omplim les dades:
 
+- **Nom:** Correu Corporatiu / Gmail.
+- **Usuari:** usuari@empresa.com.
+- **Contrasenya:** Una contrasenya creada amb el generador.
+- **Web:** https://mail.google.com
+
+**Pas 3.** Premem "Desar" per guardar la informació.
 
 ![4ta](/img/4ra%20captura.png)
 
+*Figura 4. Guardar les dades d'un compte de correu.*
 
-### 3.2 Desar una credencial d'una aplicació o servei web
-1. Prem de nou el botó **+ (Afegir element)**.
-2. Completa les dades del servei intern o extern (per exemple, panell d'administració o un servei Cloud):
-   * **Nom:** Panell Servidor Web / Nextcloud.
-   * **Nom d'usuari:** admin_tecnic.
-   * **Contrasenya:** Clau generada de 16+ caràcters.
-   * **URI 1:** https://panell.empresa.local.
-3. Fes clic a **Desar**.
+### 3.2 Afegir un altre servei web
 
+També podem guardar les dades d'altres aplicacions o serveis.
+
+**Pas 1.** Tornem a prémer "+" per crear un nou element.
+
+**Pas 2.** Introduïm les dades següents:
+
+- **Nom:** Panell Servidor Web / Nextcloud.
+- **Usuari:** admin_tecnic.
+- **Contrasenya:** Una clau segura de 16 caràcters o més.
+- **Web:** https://panell.empresa.local
+
+**Pas 3.** Guardem el nou registre.
 
 ![5ta](/img/5ta%20captura.png)
 
+*Figura 5. Emmagatzematge de les credencials d'un servei web.*
 
 ---
 
+## 4. Còpies de seguretat
 
-## 4. Gestió de Còpies de Seguretat (Backup)
+### 4.1 Exportar les dades
 
+És important tenir una còpia de les nostres contrasenyes per evitar perdre la informació.
 
-### 4.1 Exportació de la base de dades de contrasenyes
-És fonamental tenir una còpia de seguretat de les dades en cas d'emergència:
+**Pas 1.** Obrim Bitwarden i anem a "Ajustos" (Settings).
 
+**Pas 2.** Seleccionem "Exportar repositori" (Export Vault).
 
-1. Dins de l'aplicació de Bitwarden, ves a **Ajustos** (Settings) > **Exportar repositori** (Export Vault).
-2. Selecciona el format d'exportació:
-   * **JSON xifrat (Encrypted JSON):** **Recomanat**. Manté el xifratge de les teves dades protegit amb la teva clau de compte o una contrasenya personalitzada.
-   * **CSV / JSON plà:** No recomanat, ja que deixa les contrasenyes en text pla sense xifrar.
-3. Introdueix la teva Contrasenya Mestra per confirmar la descàrrega del fitxer.
+**Pas 3.** Escollim el format de descàrrega:
 
+- **JSON xifrat:** És l'opció recomanada perquè protegeix les dades.
+- **CSV o JSON sense xifrar:** No són recomanables perquè les contrasenyes queden visibles.
+
+**Pas 4.** Confirmem l'exportació introduint la contrasenya mestra.
 
 ![6ta](/img/6ta%20captura.png)
 
+*Figura 6. Exportació de les dades de Bitwarden.*
 
-### 4.2 Bona pràctica per emmagatzemar la còpia de seguretat
-Per garantir la seguretat del backup descarregat:
+### 4.2 On guardar el backup?
 
+Per protegir la còpia de seguretat podem utilitzar diferents opcions:
 
-**Unitat USB xifrada:** Copia el fitxer d'exportació en un llapis USB xifrat amb **BitLocker** (en Windows) o **LUKS** (en Linux).
-**Emmagatzematge al núvol segur:** Si es desa al núvol, s'ha d'assegurar que el fitxer exportat estigui prèviament xifrat (amb el format JSON xifrat de Bitwarden o utilitzant eines com **VeraCrypt** o 7-Zip amb contrasenya AES-256).
-**Guardat físic:** Guarda el llapis USB en una caixa forta o armari tancat amb clau a l'oficina.
+- **USB xifrat:** Guardar el fitxer en un USB protegit amb BitLocker (Windows) o LUKS (Linux).
+- **Núvol:** Utilitzar un servei segur, mantenint sempre el fitxer xifrat. També podem utilitzar VeraCrypt o 7-Zip amb AES-256.
+- **Lloc físic segur:** Conservar el USB en un armari tancat amb clau o en una caixa forta.
+
+És important no deixar mai les còpies de seguretat sense protecció, ja que poden contenir informació privada de l'empresa.
